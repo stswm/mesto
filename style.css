@@ -1,0 +1,234 @@
+.page {
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+  font-family: Inter, arial, sans-serif;
+  margin: 0 auto;
+  width: 100%;
+  color: #fff;
+  background-color: #000;
+}
+
+.header {
+  margin: 0 auto;
+  display: flex;
+  align-items: start;
+  padding-top: 45px;
+  max-width: 880px;
+  min-height: 74px;
+}
+@media screen and (max-width: 768px) {
+  .header {
+    padding-top: 28px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header__logo {
+    max-width: 103px;
+    padding-left: 27px;
+  }
+}
+.main {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0;
+}
+.profile {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+}
+
+@media screen and (max-width: 768px) {
+  .profile {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.profile__avatar {
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 30px;
+}
+@media screen and (max-width: 768px) {
+  .profile__avatar {
+    margin: 0;
+  }
+}
+.profile__info {
+  display: grid;
+  column-gap: 18px;
+  row-gap: 16px;
+  grid-template-columns: min-content 1fr;
+  grid-template-rows: min-content 1fr;
+  white-space: nowrap;
+}
+@media screen and (max-width: 768px) {
+  .profile__info {
+    padding-top: 26px;
+    column-gap: 10px;
+    row-gap: 14px;
+  }
+}
+.profile__name {
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 114%;
+}
+@media screen and (max-width: 768px) {
+  .profile__name {
+    font-size: 27px;
+    text-align: center;
+  }
+}
+
+.profile__status {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  line-height: 137.5%;
+  font-weight: normal;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__status {
+    text-align: center;
+    font-size: 14px;
+  }
+}
+
+.profile__edit-button {
+  justify-self: flex-end;
+  margin-left: auto;
+  box-sizing: border-box;
+}
+.profile__add-button {
+  max-height: 50px;
+  align-self: center;
+  margin-left: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__add-button {
+    padding-top: 36px;
+    padding-bottom: 36px;
+    margin: 0 auto;
+    max-width: 282px;
+  }
+}
+
+.elements {
+  margin: 0;
+  padding: 0;
+  padding-top: 100px;
+  width: 100%;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(200px, 1fr));
+  grid-column-gap: 17px;
+  grid-row-gap: 20px;
+}
+@media screen and (max-width: 768px) {
+  .elements {
+    padding-top: 0;
+  }
+}
+.element {
+  direction: none;
+  display: grid;
+  grid-template-rows: 2fr min-content;
+  grid-template-columns: 1fr min-content;
+  grid-template-areas:
+    "pic pic"
+    "text heart";
+  border-radius: 10px;
+  min-height: 361px;
+  width: 100%;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  .elements {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 320px) {
+  .elements {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.element__pic {
+  grid-area: pic;
+  width: 100%;
+  object-fit: cover;
+  /* display: none; */
+}
+.element__text {
+  margin: 25px 0 31px 21px;
+  padding: 0;
+  white-space: nowrap;
+  font-weight: 900;
+  font-size: 1.5rem;
+  line-height: 29px;
+  /* align-self: start; */
+  grid-area: text;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #000;
+}
+/* .element__rectangle{
+
+} */
+.element__heart {
+  grid-area: heart;
+  margin: 30px 20px;
+  max-width: 22px;
+  align-self: center;
+  justify-self: end;
+}
+.footer {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    max-width: 282px;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 320px) {
+  .footer {
+    text-align: left;
+  }
+}
+
+.author {
+  margin: 0;
+  padding: 66px 0 60px 0;
+  font-size: 18px;
+  line-height: 22px;
+  color: #545454;
+  /* max-width: 318px; */
+}
+
+@media screen and (max-width: 768px) {
+  .author {
+    padding-top: 48px;
+    padding-bottom: 36px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .author {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
