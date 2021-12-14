@@ -1,0 +1,9 @@
+.header__switcher{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 100px;
+  padding: 7px;
+  border-radius: 2px;
+  border: 1px solid rgba(148, 148, 148, 0.6);
+}
