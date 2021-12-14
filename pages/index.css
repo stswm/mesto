@@ -29,6 +29,6 @@
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/buttonEffect/buttonEffect.css);
 @import url(../blocks/header/__switcher/header__switcher.css);
-@import url(../blocks/header/__switcher/header__svitcher_stswm.css);
-@import url(../blocks/header/__switcher/header__svitcher_origin.css);
+@import url(../blocks/header/__switcher/header__svitcher-stswm.css);
+@import url(../blocks/header/__switcher/header__svitcher-origin.css);
 @import url(../blocks/selected/selected.css);
