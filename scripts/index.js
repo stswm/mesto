@@ -4,14 +4,14 @@ const popup = document.querySelector(".popup");
 
 function togglePopup() {
   popup.classList.toggle("popup_opend");
-  console.log('q');
+  // console.log('q');
 }
 
 function popupCloseOverlay(event) {
   if (event.target === event.currentTarget) {
     popup.classList.remove("popup_opend");
   }
-  console.log('w');
+  // console.log('w');
 }
 
 popupOpenButton.addEventListener("click", togglePopup);
@@ -23,7 +23,8 @@ const hearts = document.querySelectorAll(".element__heart");
 //
 hearts.forEach((heart) => {
   heart.onclick = function () {
-    heart.classList.toggle("heart-active");
+    heart.classList.toggle("element__heart_active");
+    // heart.classList.toggle("buttonEffect");
   };
 });
 

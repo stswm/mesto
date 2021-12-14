@@ -1,0 +1,4 @@
+.popup_opend {
+  display: flex;
+  flex-direction: row-reverse;
+}

@@ -1,0 +1,13 @@
+.element__heart {
+  grid-area: heart;
+  background: url("../../../img/Heart.png") 0 0/contain no-repeat;
+  padding: 0;
+  width: 22px;
+  height: 19px;
+  border: none;
+  margin: 30px 20px;
+  max-width: 22px;
+  align-self: center;
+  justify-self: end;
+  cursor: pointer;
+}

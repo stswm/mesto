@@ -1,0 +1,16 @@
+.profile__info {
+  display: grid;
+  column-gap: 18px;
+  row-gap: 16px;
+  grid-template-columns: min-content 1fr;
+  grid-template-rows: min-content 1fr;
+  white-space: nowrap;
+}
+@media screen and (max-width: 768px) {
+  .profile__info {
+    padding-top: 26px;
+    padding-bottom: 36px;
+    column-gap: 10px;
+    row-gap: 14px;
+  }
+}

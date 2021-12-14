@@ -1,0 +1,6 @@
+.buttonEffect{
+  transition: opacity 0.1s linear 0s;
+  }
+  .buttonEffect:hover{
+    opacity: 0.6;
+  }

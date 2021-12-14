@@ -1,0 +1,10 @@
+.profile__edit-button {
+  background: transparent url("../../../img/EditButton.png") no-repeat;
+  justify-self: flex-end;
+  box-sizing: border-box;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  height: 24px;
+  width: 24px;
+}
