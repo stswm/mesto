@@ -1,5 +1,4 @@
 .element {
-  direction: none;
   display: grid;
   grid-template-rows: 2fr min-content;
   grid-template-columns: 1fr min-content;
