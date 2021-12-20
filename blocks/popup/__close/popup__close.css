@@ -10,3 +10,12 @@
   border: none;
   cursor: pointer;
 }
+@media screen and (max-width: 786px) {
+  .popup__close {
+    background: transparent url("../../../img/CloseIconMobile.png");
+    width: 20px;
+    height: 20px;
+    top: -26px;
+    right: 0;
+  }
+}

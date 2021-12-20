@@ -10,66 +10,68 @@
 
 <body class="page">
   <header class="header">
-    <img class="header__logo" src="./img/logo.png" alt="Логотип">
+    <img class="header__logo" src="./img/Logo.svg" alt="Логотип">
     <!-- <div class="header__line"></div> -->
     <div class="header__switcher">
-      <a href="./index.html" class="header__svitcher-stswm buttonEffect selected">stswm</a>
-      <a href="./indexOr.html" class="header__svitcher-origin buttonEffect">origin</a>
+      <a href="./index.html" class="header__switcher-op header__switcher-op_selected buttonEffect">stswm</a>
+      <a href="./indexOr.html" class="header__switcher-op buttonEffect">origin</a>
     </div>
   </header>
   <main class="main">
     <section class="profile">
       <img src="./img/avatar2.jpg" alt="Фото профиля" class="profile__avatar">
       <div class="profile__info">
-        <h2 class="profile__name">Андрей Понкратов</h2>
-        <button class="profile__edit-button buttonEffect"></button>
-        <h3 class="profile__about">журналист</h3>
+        <h1 class="profile__name">Андрей Понкратов</h1>
+        <button type="button" class="profile__edit-button buttonEffect"></button>
+        <h3 class="profile__about">Журналист</h3>
       </div>
-      <button class="profile__add-button buttonEffect"></button>
+      <button type="button" class="profile__add-button buttonEffect"></button>
     </section>
+    <section>
     <ul class="elements">
       <li class="element">
         <img class="element__pic" src="./img/Moscow.jpg" alt="Москва">
         <h2 class="element__text">Москва</h2>
-        <button class="element__heart buttonEffect"></button>
+        <button type="button" class="element__heart buttonEffect"></button>
       </li>
       <li class="element">
         <img class="element__pic" src="./img/SaintP.jpg" alt="Санкт-Петербург">
         <h2 class="element__text">Санкт-Петербург</h2>
-        <button class="element__heart buttonEffect"></button>
+        <button type="button" class="element__heart buttonEffect"></button>
       </li>
       <li class="element">
         <img class="element__pic" src="./img/Kazan.jpg" alt="Казань">
         <h2 class="element__text">Казань</h2>
-        <button class="element__heart buttonEffect"></button>
+        <button type="button" class="element__heart buttonEffect"></button>
       </li>
       <li class="element">
         <img class="element__pic" src="./img/Kras.jpg" alt="Краснодар">
         <h2 class="element__text">Краснодар</h2>
-        <button class="element__heart buttonEffect"></button>
+        <button type="button" class="element__heart buttonEffect"></button>
       </li>
       <li class="element">
         <img class="element__pic" src="./img/Sochi.jpg" alt="Сочи">
         <h2 class="element__text">Сочи</h2>
-        <button class="element__heart buttonEffect"></button>
+        <button type="button" class="element__heart buttonEffect"></button>
       </li>
       <li class="element">
         <img class="element__pic" src="./img/Salekhard.jpg" alt="Салехард">
         <h2 class="element__text">Салехард</h2>
-        <button class="element__heart buttonEffect"></button>
+        <button type="button" class="element__heart buttonEffect"></button>
       </li>
     </ul>
+  </section>
   </main>
   <footer class="footer">
-    <h2 class="footer__author">&copy; 2020 Mesto Russia</h2>
+    <p class="footer__author">&copy; 2020 Mesto Russia</p>
   </footer>
   <section class="popup">
     <div class="popup__shell">
-      <button class="popup__close"></button>
-      <form class="popup__container" id="rename">
+      <button type="button" class="popup__close buttonEffect"></button>
+      <form name="editProfile" class="popup__container" id="rename">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input class="popup__name" placeholder="Введите Имя" type="text">
-        <input class="popup__about" placeholder="Немного о себе" type="text">
+        <input class="popup__input popup__name" placeholder="Введите Имя" type="text">
+        <input class="popup__input popup__about" placeholder="Немного о себе" type="text">
         <button class="popup__save" type="submit" form="rename">Сохранить</button>
       </form>
     </div>

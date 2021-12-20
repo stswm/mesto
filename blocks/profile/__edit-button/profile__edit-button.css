@@ -7,4 +7,13 @@
   padding: 0;
   height: 24px;
   width: 24px;
+  align-self: center;
+}
+@media screen and (max-width: 768px) {
+  .profile__edit-button {
+    background: transparent url("../../../img/EditButtonMobile.png") no-repeat;
+    height: 18px;
+    width: 18px;
+
+  }
 }

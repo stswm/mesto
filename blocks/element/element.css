@@ -6,8 +6,8 @@
     "pic pic"
     "text heart";
   border-radius: 10px;
-  max-height: 361px;
   width: 100%;
+  min-height: 361px;
   background-color: #fff;
   overflow: hidden;
 }
