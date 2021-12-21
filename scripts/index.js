@@ -2,12 +2,12 @@ const popupOpenButton = document.querySelector(".profile__edit-button");
 const popupCloseButton = document.querySelector(".popup__close");
 const popup = document.querySelector(".popup");
 const defaultName = document.querySelector(".profile__name");
-const popupName = document.querySelector(".popup__name");
+const popupName = document.querySelector(".popup__input_type_name");
 const defaultAbout = document.querySelector(".profile__about");
-const popupAbout = document.querySelector(".popup__about");
+const popupAbout = document.querySelector(".popup__input_type_about");
 const formElement = document.querySelector(".popup__container");
-const nameInput = formElement.querySelector(".popup__name");
-const aboutInput = formElement.querySelector(".popup__about");
+const nameInput = formElement.querySelector(".popup__input_type_name");
+const aboutInput = formElement.querySelector(".popup__input_type_about");
 const hearts = document.querySelectorAll(".element__heart");
 
 function togglePopup() {
