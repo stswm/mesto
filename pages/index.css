@@ -34,3 +34,6 @@
 @import url(../blocks/header/__switcher/_selected/header__switcher-op_selected.css);
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/element/__delete/element__delete.css);
+@import url(../blocks/preview/__img/preview__img.css);
+@import url(../blocks/preview/__caption/preview__caption.css);
+@import url(../blocks/preview/preview_pop/preview_pop.css);

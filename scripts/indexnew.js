@@ -27,6 +27,7 @@ const initialCards = [
 // modal
 const editModal = document.querySelector(".popup_type_edit");
 const addCardModal = document.querySelector(".popup_type_add-card");
+const previewModal = document.querySelector(".preview")
 
 //forms
 const editForm = editModal.querySelector(".popup__container");
@@ -43,6 +44,7 @@ const editProfileBtn = document.querySelector(".profile__edit-button");
 const closeEditProfileBtn = editModal.querySelector(".popup__close");
 const addCardBtn = document.querySelector(".profile__add-button");
 const closeAddCardBtn = addCardModal.querySelector(".popup__close");
+const closePreviewBtn = previewModal.querySelector(".popup__close");
 
 const currentName = document.querySelector(".profile__name");
 const currentAbout = document.querySelector(".profile__about");
@@ -75,7 +77,7 @@ editModal.addEventListener("click", popupCloseOverlay);
 addCardBtn.addEventListener("click", () => togglePopup(addCardModal));
 closeAddCardBtn.addEventListener("click", () => togglePopup(addCardModal));
 
-
+closePreviewBtn.addEventListener("click", () => togglePopup(previewModal));
 //function создание новой карточки
 function ceateCard(cardData) {
   const cardElement = cardTemp.cloneNode(true);
@@ -86,15 +88,34 @@ function ceateCard(cardData) {
 
   cardTitle.textContent = cardData.name;
   cardImage.src = cardData.link;
+  cardImage.alt = cardData.name;
   deleteBtn.addEventListener('click', deleteHandler);
   likeBtn.addEventListener('click', like);
 
-  cardImage.addEventListener('click', imagePreview);
-
+  cardImage.addEventListener("click", preview);
+  addCardForm.reset();
 
   list.prepend(cardElement);
 }
-//добавление карточки
+function preview(e){
+  togglePopup(previewModal);
+  const previewImg = previewModal.querySelector('.preview__img');
+  const previewCaption = previewModal.querySelector('.preview__caption');
+  previewImg.src = e.target.src;
+  previewImg.alt = e.target.alt;
+  previewCaption.textContent = e.target.nextElementSibling.textContent;
+}
+
+
+// previewModal.addEventListener("click", popupCloseOverlay);
+// function popupCloseOverlay(event) {
+//   if (event.target === event.currentTarget) {
+//     console.log('q');
+//     previewModal.classList.remove("popup_opend");
+//   }
+// }
+
+
 initialCards.forEach(ceateCard);
 function like(e){
   e.target.classList.toggle("element__heart_active");
@@ -102,8 +123,13 @@ function like(e){
 function deleteHandler(e){
   e.target.closest('.element').remove()
 }
-function imagePreview(){
+function imagePreview(e){
   console.log('qq');
+  e.addEventListener("click", () => togglePopup(previewModal));
+//close editProfile popup
+// closeEditProfileBtn.addEventListener("click",  () => togglePopup(editModal));
+
+
 };
 
 editForm.addEventListener("submit", (evt) => {
@@ -120,6 +146,7 @@ addCardForm.addEventListener("submit",(event) => {
     name: inputCardName.value,
     link: inputCardLink.value,
   });
+
   togglePopup(addCardModal);
 });
 
