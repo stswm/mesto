@@ -1,107 +1,152 @@
 const initialCards = [
   {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+    name: "Салехард",
+    link: "./img/Salekhard.jpg",
   },
   {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+    name: "Сочи",
+    link: "./img/Sochi.jpg",
   },
   {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+    name: "Краснодар",
+    link: "./img/Kras.jpg",
   },
   {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+    name: "Казань",
+    link: "./img/Kazan.jpg",
   },
   {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+    name: "Санкт-Петербург",
+    link: "./img/SaintP.jpg",
   },
   {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+    name: "Москва",
+    link: "./img/Moscow.jpg",
   },
 ];
 // modal
 const editModal = document.querySelector(".popup_type_edit");
 const addCardModal = document.querySelector(".popup_type_add-card");
+const previewModal = document.querySelector(".preview")
 
 //forms
 const editForm = editModal.querySelector(".popup__container");
 const addCardForm = addCardModal.querySelector(".popup__container");
-//input
 
+//input
+const inputProfileName = document.querySelector(".popup__input_type_name");
+const inputProfileAbout = document.querySelector(".popup__input_type_about");
 const inputCardName = document.querySelector(".popup__input_card-name");
 const inputCardLink = document.querySelector(".popup__input_card-link");
 
 //btn
 const editProfileBtn = document.querySelector(".profile__edit-button");
 const closeEditProfileBtn = editModal.querySelector(".popup__close");
-
 const addCardBtn = document.querySelector(".profile__add-button");
 const closeAddCardBtn = addCardModal.querySelector(".popup__close");
+const closePreviewBtn = previewModal.querySelector(".popup__close");
 
-const list = document.querySelector(".elements");
+const currentName = document.querySelector(".profile__name");
+const currentAbout = document.querySelector(".profile__about");
+
 const cardTemp = document.querySelector(".cardTemp").content;
+const list = document.querySelector(".elements");
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-const toggleModal = (modal) => {
-  modal.classList.toggle("popup_opend");
-};
-
-editProfileBtn.addEventListener("click", () => toggleModal(editModal));
-closeEditProfileBtn.addEventListener("click", () => toggleModal(editModal));
-
-addCardBtn.addEventListener("click", () => toggleModal(addCardModal));
-closeAddCardBtn.addEventListener("click", () => toggleModal(addCardModal));
-
-// addCardForm.addEventListener("submit", (evt) => {
-//   evt.preventDefault();
-//   evt.preventDefault();
-//   const nameValue = inputCardName.value;
-//   const linkValue = inputCardLink.value;
-//   const obj = {
-//     name: nameValue,
-//     link: linkValue,
-//   };
-//   ceateCard(obj);
-// });
-
-const test = (evt) => {
-  evt.preventDefault();
-  const nameValue = inputCardName.value;
-  const linkValue = inputCardLink.value;
-  const obj = {
-    name: nameValue,
-    link: linkValue,
-  };
-  ceateCard(obj);
+//function открытие и закрытие popup
+const togglePopup = (popup) =>{
+  popup.classList.toggle("popup_opend");
+  inputProfileName.value = currentName.textContent;
+  inputProfileAbout.value = currentAbout.textContent;
+}
+//function закрытие при клике вне popup
+function popupCloseOverlay(event) {
+  if (event.target === event.currentTarget) {
+    editModal.classList.remove("popup_opend");
+  }
 }
 
-addCardForm.addEventListener("submit",test);
+//! блок изменения профиля popup
+//open editProfile popup
+editProfileBtn.addEventListener("click", () => togglePopup(editModal));
+//close editProfile popup
+closeEditProfileBtn.addEventListener("click",  () => togglePopup(editModal));
+//close editProfile popup при клике вне
+editModal.addEventListener("click", popupCloseOverlay);
+//! addcard popup
+addCardBtn.addEventListener("click", () => togglePopup(addCardModal));
+closeAddCardBtn.addEventListener("click", () => togglePopup(addCardModal));
 
+closePreviewBtn.addEventListener("click", () => togglePopup(previewModal));
+//function создание новой карточки
 function ceateCard(cardData) {
   const cardElement = cardTemp.cloneNode(true);
   const cardImage = cardElement.querySelector(".element__pic");
   const cardTitle = cardElement.querySelector(".element__text");
+  const deleteBtn = cardElement.querySelector(".element__delete");
+  const likeBtn = cardElement.querySelector(".element__heart");
+
   cardTitle.textContent = cardData.name;
   cardImage.src = cardData.link;
+  cardImage.alt = cardData.name;
+  deleteBtn.addEventListener('click', deleteHandler);
+  likeBtn.addEventListener('click', like);
+
+  cardImage.addEventListener("click", preview);
+  addCardForm.reset();
+
   list.prepend(cardElement);
 }
+function preview(e){
+  togglePopup(previewModal);
+  const previewImg = previewModal.querySelector('.preview__img');
+  const previewCaption = previewModal.querySelector('.preview__caption');
+  previewImg.src = e.target.src;
+  previewImg.alt = e.target.alt;
+  previewCaption.textContent = e.target.nextElementSibling.textContent;
+}
+
+
+// previewModal.addEventListener("click", popupCloseOverlay);
+// function popupCloseOverlay(event) {
+//   if (event.target === event.currentTarget) {
+//     console.log('q');
+//     previewModal.classList.remove("popup_opend");
+//   }
+// }
+
 
 initialCards.forEach(ceateCard);
+function like(e){
+  e.target.classList.toggle("element__heart_active");
+}
+function deleteHandler(e){
+  e.target.closest('.element').remove()
+}
+function imagePreview(e){
+  console.log('qq');
+  e.addEventListener("click", () => togglePopup(previewModal));
+//close editProfile popup
+// closeEditProfileBtn.addEventListener("click",  () => togglePopup(editModal));
+
+
+};
+
+editForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+  currentAbout.textContent = inputProfileAbout.value;
+  currentName.textContent = inputProfileName.value;
+  togglePopup(editModal);
+});
+
+
+addCardForm.addEventListener("submit",(event) => {
+  event.preventDefault();
+  ceateCard({
+    name: inputCardName.value,
+    link: inputCardLink.value,
+  });
+
+  togglePopup(addCardModal);
+});
+

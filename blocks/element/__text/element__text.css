@@ -9,5 +9,5 @@
   overflow: hidden;
   text-overflow: ellipsis;
   color: #000;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
