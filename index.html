@@ -29,54 +29,44 @@
     </section>
     <section>
     <ul class="elements">
-      <li class="element">
-        <img class="element__pic" src="./img/Moscow.jpg" alt="Москва">
-        <h2 class="element__text">Москва</h2>
-        <button type="button" class="element__heart buttonEffect"></button>
-      </li>
-      <li class="element">
-        <img class="element__pic" src="./img/SaintP.jpg" alt="Санкт-Петербург">
-        <h2 class="element__text">Санкт-Петербург</h2>
-        <button type="button" class="element__heart buttonEffect"></button>
-      </li>
-      <li class="element">
-        <img class="element__pic" src="./img/Kazan.jpg" alt="Казань">
-        <h2 class="element__text">Казань</h2>
-        <button type="button" class="element__heart buttonEffect"></button>
-      </li>
-      <li class="element">
-        <img class="element__pic" src="./img/Kras.jpg" alt="Краснодар">
-        <h2 class="element__text">Краснодар</h2>
-        <button type="button" class="element__heart buttonEffect"></button>
-      </li>
-      <li class="element">
-        <img class="element__pic" src="./img/Sochi.jpg" alt="Сочи">
-        <h2 class="element__text">Сочи</h2>
-        <button type="button" class="element__heart buttonEffect"></button>
-      </li>
-      <li class="element">
-        <img class="element__pic" src="./img/Salekhard.jpg" alt="Салехард">
-        <h2 class="element__text">Салехард</h2>
-        <button type="button" class="element__heart buttonEffect"></button>
-      </li>
     </ul>
   </section>
   </main>
   <footer class="footer">
     <p class="footer__author">&copy; 2020 Mesto Russia</p>
   </footer>
-  <section class="popup">
+  <section class="popup popup_type_edit">
     <div class="popup__shell">
       <button type="button" class="popup__close buttonEffect"></button>
       <form name="editProfile" class="popup__container" id="rename">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input class="popup__input popup__input_type_name" placeholder="Введите Имя" type="text">
-        <input class="popup__input popup__input_type_about" placeholder="Немного о себе" type="text">
+        <input class="popup__input popup__input_top popup__input_type_name" placeholder="Введите Имя" type="text">
+        <input class="popup__input popup__input_bot popup__input_type_about" placeholder="Немного о себе" type="text">
         <button class="popup__save" type="submit" form="rename">Сохранить</button>
       </form>
     </div>
   </section>
-  <script src="./scripts/index.js"></script>
+  <!-- ! newplace popup -->
+  <section class="popup popup_type_add-card">
+    <div class="popup__shell">
+      <button type="button" class="popup__close buttonEffect"></button>
+      <form name="addCard" class="popup__container" id="addCard">
+        <h2 class="popup__title">Новое место</h2>
+        <input class="popup__input popup__input_top popup__input_card-name" placeholder="Название" type="text">
+        <input class="popup__input popup__input_bot popup__input_card-link" placeholder="Ссылка на картинку" type="text">
+        <button class="popup__save" type="submit" form="addCard">Сохранить</button>
+      </form>
+    </div>
+  </section>
+  <!-- ! end popup newplace -->
+  <template class="cardTemp">
+    <li class="element">
+      <img class="element__pic" src="" alt="">
+      <h2 class="element__text"></h2>
+      <button type="button" class="element__heart buttonEffect"></button>
+    </li>
+  </template>  
+  <script src="./scripts/indextest.js"></script>
 </body>
 
 </html>
