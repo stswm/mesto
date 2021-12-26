@@ -10,4 +10,5 @@
   min-height: 361px;
   background-color: #fff;
   overflow: hidden;
+  position: relative;
 }

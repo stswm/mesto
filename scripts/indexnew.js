@@ -47,19 +47,15 @@ const closeAddCardBtn = addCardModal.querySelector(".popup__close");
 const currentName = document.querySelector(".profile__name");
 const currentAbout = document.querySelector(".profile__about");
 
-const nameInput = editForm.querySelector(".popup__input_type_name");
-const aboutInput = editForm.querySelector(".popup__input_type_about");
-const hearts = document.querySelectorAll(".element__heart");
-
-const list = document.querySelector(".elements");
 const cardTemp = document.querySelector(".cardTemp").content;
+const list = document.querySelector(".elements");
 
 
 //function открытие и закрытие popup
 const togglePopup = (popup) =>{
   popup.classList.toggle("popup_opend");
-  nameInput.value = currentName.textContent;
-  aboutInput.value = currentAbout.textContent;
+  inputProfileName.value = currentName.textContent;
+  inputProfileAbout.value = currentAbout.textContent;
 }
 //function закрытие при клике вне popup
 function popupCloseOverlay(event) {
@@ -79,34 +75,44 @@ editModal.addEventListener("click", popupCloseOverlay);
 addCardBtn.addEventListener("click", () => togglePopup(addCardModal));
 closeAddCardBtn.addEventListener("click", () => togglePopup(addCardModal));
 
-hearts.forEach((heart) => {
-  heart.onclick = function () {
-    heart.classList.toggle("element__heart_active");
-  };
-});
-
-
-//сохранение новых name about
-function saveEditProfile(evt) {
-  evt.preventDefault();
-  console.log('saveProfileBtn =>');
-  currentAbout.textContent = aboutInput.value;
-  currentName.textContent = nameInput.value;
-  togglePopup(editModal);
-}
-editForm.addEventListener("submit", saveEditProfile);
 
 //function создание новой карточки
 function ceateCard(cardData) {
   const cardElement = cardTemp.cloneNode(true);
   const cardImage = cardElement.querySelector(".element__pic");
   const cardTitle = cardElement.querySelector(".element__text");
+  const deleteBtn = cardElement.querySelector(".element__delete");
+  const likeBtn = cardElement.querySelector(".element__heart");
+
   cardTitle.textContent = cardData.name;
   cardImage.src = cardData.link;
+  deleteBtn.addEventListener('click', deleteHandler);
+  likeBtn.addEventListener('click', like);
+
+  cardImage.addEventListener('click', imagePreview);
+
+
   list.prepend(cardElement);
 }
 //добавление карточки
 initialCards.forEach(ceateCard);
+function like(e){
+  e.target.classList.toggle("element__heart_active");
+}
+function deleteHandler(e){
+  e.target.closest('.element').remove()
+}
+function imagePreview(){
+  console.log('qq');
+};
+
+editForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+  currentAbout.textContent = inputProfileAbout.value;
+  currentName.textContent = inputProfileName.value;
+  togglePopup(editModal);
+});
+
 
 addCardForm.addEventListener("submit",(event) => {
   event.preventDefault();
@@ -114,7 +120,6 @@ addCardForm.addEventListener("submit",(event) => {
     name: inputCardName.value,
     link: inputCardLink.value,
   });
-  console.log('addCardBtn =>');
   togglePopup(addCardModal);
 });
 

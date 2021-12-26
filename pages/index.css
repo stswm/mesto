@@ -33,3 +33,4 @@
 @import url(../blocks/header/__switcher/header__switcher-op.css);
 @import url(../blocks/header/__switcher/_selected/header__switcher-op_selected.css);
 @import url(../blocks/popup/__input/popup__input.css);
+@import url(../blocks/element/__delete/element__delete.css);
