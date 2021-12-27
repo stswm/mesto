@@ -52,16 +52,22 @@ const currentAbout = document.querySelector(".profile__about");
 const cardTemp = document.querySelector(".cardTemp").content;
 const list = document.querySelector(".elements");
 
-
 const previewImg = previewModal.querySelector(".preview__img");
 const previewCaption = previewModal.querySelector(".preview__caption");
 
 //function открытие и закрытие popup
-const togglePopup = (popup) => {
-  popup.classList.toggle("popup_opend");
-  inputProfileName.value = currentName.textContent;
-  inputProfileAbout.value = currentAbout.textContent;
+// const togglePopup = (popup) => {
+//   popup.classList.toggle("popup_opend");
+//   inputProfileName.value = currentName.textContent;
+//   inputProfileAbout.value = currentAbout.textContent;
+// };
+function closePopup(popup) {
+  popup.classList.remove("popup_opend");
+}
+const openPopup = (popup) => {
+  popup.classList.add("popup_opend");
 };
+
 //function закрытие при клике вне popup
 function popupCloseOverlay(event) {
   if (event.target === event.currentTarget) {
@@ -71,16 +77,20 @@ function popupCloseOverlay(event) {
 
 //! блок изменения профиля popup
 //open editProfile popup
-editProfileBtn.addEventListener("click", () => togglePopup(editModal));
+editProfileBtn.addEventListener("click", () => {
+  openPopup(editModal);
+  inputProfileName.value = currentName.textContent;
+  inputProfileAbout.value = currentAbout.textContent;
+});
 //close editProfile popup
-closeEditProfileBtn.addEventListener("click", () => togglePopup(editModal));
+closeEditProfileBtn.addEventListener("click", () => closePopup(editModal));
 //close editProfile popup при клике вне
 editModal.addEventListener("click", popupCloseOverlay);
 //! addcard popup
-addCardBtn.addEventListener("click", () => togglePopup(addCardModal));
-closeAddCardBtn.addEventListener("click", () => togglePopup(addCardModal));
+addCardBtn.addEventListener("click", () => openPopup(addCardModal));
+closeAddCardBtn.addEventListener("click", () => closePopup(addCardModal));
 
-closePreviewBtn.addEventListener("click", () => togglePopup(previewModal));
+closePreviewBtn.addEventListener("click", () => closePopup(previewModal));
 //function создание новой карточки
 function ceateCard(cardData) {
   const cardElement = cardTemp.cloneNode(true);
@@ -88,32 +98,20 @@ function ceateCard(cardData) {
   const cardTitle = cardElement.querySelector(".element__text");
   const deleteBtn = cardElement.querySelector(".element__delete");
   const likeBtn = cardElement.querySelector(".element__heart");
-
   cardTitle.textContent = cardData.name;
   cardImage.src = cardData.link;
   cardImage.alt = cardData.name;
   deleteBtn.addEventListener("click", deleteHandler);
   likeBtn.addEventListener("click", like);
-
   cardImage.addEventListener("click", preview);
-  addCardForm.reset();
-
   list.prepend(cardElement);
 }
 function preview(e) {
-  togglePopup(previewModal);
+  openPopup(previewModal);
   previewImg.src = e.target.src;
   previewImg.alt = e.target.alt;
   previewCaption.textContent = e.target.nextElementSibling.textContent;
 }
-
-// previewModal.addEventListener("click", popupCloseOverlay);
-// function popupCloseOverlay(event) {
-//   if (event.target === event.currentTarget) {
-//     console.log('q');
-//     previewModal.classList.remove("popup_opend");
-//   }
-// }
 
 initialCards.forEach(ceateCard);
 function like(e) {
@@ -124,7 +122,7 @@ function deleteHandler(e) {
 }
 function imagePreview(e) {
   console.log("qq");
-  e.addEventListener("click", () => togglePopup(previewModal));
+  e.addEventListener("click", () => openPopup(previewModal));
   //close editProfile popup
   // closeEditProfileBtn.addEventListener("click",  () => togglePopup(editModal));
 }
@@ -133,7 +131,7 @@ editForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
   currentAbout.textContent = inputProfileAbout.value;
   currentName.textContent = inputProfileName.value;
-  togglePopup(editModal);
+  closePopup(editModal);
 });
 
 addCardForm.addEventListener("submit", (event) => {
@@ -142,6 +140,6 @@ addCardForm.addEventListener("submit", (event) => {
     name: inputCardName.value,
     link: inputCardLink.value,
   });
-
-  togglePopup(addCardModal);
+  addCardForm.reset();
+  closePopup(addCardModal);
 });
