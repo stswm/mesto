@@ -52,6 +52,10 @@ const currentAbout = document.querySelector(".profile__about");
 const cardTemp = document.querySelector(".cardTemp").content;
 const list = document.querySelector(".elements");
 
+
+const previewImg = previewModal.querySelector(".preview__img");
+const previewCaption = previewModal.querySelector(".preview__caption");
+
 //function открытие и закрытие popup
 const togglePopup = (popup) => {
   popup.classList.toggle("popup_opend");
@@ -98,8 +102,6 @@ function ceateCard(cardData) {
 }
 function preview(e) {
   togglePopup(previewModal);
-  const previewImg = previewModal.querySelector(".preview__img");
-  const previewCaption = previewModal.querySelector(".preview__caption");
   previewImg.src = e.target.src;
   previewImg.alt = e.target.alt;
   previewCaption.textContent = e.target.nextElementSibling.textContent;
