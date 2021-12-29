@@ -91,21 +91,8 @@ addCardBtn.addEventListener("click", () => openPopup(addCardModal));
 closeAddCardBtn.addEventListener("click", () => closePopup(addCardModal));
 
 closePreviewBtn.addEventListener("click", () => closePopup(previewModal));
-//function создание новой карточки
-function ceateCard(cardData) {
-  const cardElement = cardTemp.cloneNode(true);
-  const cardImage = cardElement.querySelector(".element__pic");
-  const cardTitle = cardElement.querySelector(".element__text");
-  const deleteBtn = cardElement.querySelector(".element__delete");
-  const likeBtn = cardElement.querySelector(".element__heart");
-  cardTitle.textContent = cardData.name;
-  cardImage.src = cardData.link;
-  cardImage.alt = cardData.name;
-  deleteBtn.addEventListener("click", deleteHandler);
-  likeBtn.addEventListener("click", like);
-  cardImage.addEventListener("click", preview);
-  list.prepend(cardElement);
-}
+
+
 function preview(e) {
   openPopup(previewModal);
   previewImg.src = e.target.src;
@@ -113,7 +100,44 @@ function preview(e) {
   previewCaption.textContent = e.target.nextElementSibling.textContent;
 }
 
-initialCards.forEach(ceateCard);
+// initialCards.forEach(ceateCard);
+
+function placeCard(cardElement) {
+  list.prepend(cardElement);
+}
+
+function createCard(data) {
+  const cardElement = cardTemp.cloneNode(true);
+  cardElement.querySelector(".element__pic").src = data.link;
+  cardElement.querySelector(".element__text").textContent = data.name;
+  const cardImage = cardElement.querySelector(".element__pic");
+  
+
+  const deleteBtn = cardElement.querySelector(".element__delete");
+  const likeBtn = cardElement.querySelector(".element__heart");
+  
+
+  deleteBtn.addEventListener("click", deleteHandler);
+  likeBtn.addEventListener("click", like);
+  cardImage.addEventListener("click", preview);
+
+  return cardElement;
+}
+function renderCard(data) {
+  const newCard = createCard(data);
+  list.prepend(newCard);
+}
+
+initialCards.forEach((cardData) => {
+  renderCard(cardData);
+});
+
+addCardForm.addEventListener("submit", () => {
+  const newCard = {name: inputCardName.value, link: inputCardLink.value};
+  renderCard(newCard);
+});
+
+
 function like(e) {
   e.target.classList.toggle("element__heart_active");
 }
@@ -121,25 +145,24 @@ function deleteHandler(e) {
   e.target.closest(".element").remove();
 }
 function imagePreview(e) {
-  console.log("qq");
   e.addEventListener("click", () => openPopup(previewModal));
-  //close editProfile popup
-  // closeEditProfileBtn.addEventListener("click",  () => togglePopup(editModal));
 }
 
-editForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
+editForm.addEventListener("submit", (e) => {
+  e.preventDefault();
   currentAbout.textContent = inputProfileAbout.value;
   currentName.textContent = inputProfileName.value;
   closePopup(editModal);
 });
 
+
 addCardForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  ceateCard({
+  createCard({
     name: inputCardName.value,
     link: inputCardLink.value,
   });
   addCardForm.reset();
   closePopup(addCardModal);
 });
+
