@@ -71,7 +71,8 @@ const openPopup = (popup) => {
 //function закрытие при клике вне popup
 function popupCloseOverlay(event) {
   if (event.target === event.currentTarget) {
-    editModal.classList.remove("popup_opend");
+    // editModal.classList.remove("popup_opend");
+    closePopup(editModal);
   }
 }
 
@@ -109,6 +110,7 @@ function placeCard(cardElement) {
 function createCard(data) {
   const cardElement = cardTemp.cloneNode(true);
   cardElement.querySelector(".element__pic").src = data.link;
+  cardElement.querySelector(".element__pic").alt = data.name;
   cardElement.querySelector(".element__text").textContent = data.name;
   const cardImage = cardElement.querySelector(".element__pic");
   
