@@ -2,20 +2,24 @@ function submitForm(event) {
   event.preventDefault();
 }
 
+// ? popup validation error text
 function showError(input,errorContainer,{inputErrorClass}){
   input.classList.add(inputErrorClass);
   errorContainer.style.visibility = '';
   errorContainer.textContent = input.validationMessage;
 }
 
+// ? popup validation error text
 function hideError(input,errorContainer,{inputErrorClass}){
   input.classList.remove(inputErrorClass);
   errorContainer.style.visibility = 'hidden';
   errorContainer.textContent = '';
 }
 
+//? popup submit button validation
 function toggleButton(form, {submitButtonSelector,inactiveButtonClass}){
   const button = form.querySelector(submitButtonSelector);
+  console.log(button);
   const isFormValid = form.checkValidity();
   console.log('isFormValid=>',isFormValid);
   if (isFormValid){

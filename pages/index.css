@@ -41,5 +41,3 @@
 @import url(../blocks/popup/__save/popup__save_notvalid.css);
 
 @import url(../blocks/popup/__input/_error/popup__input_error-message.css);
-@import url(../blocks/popup/__input/_error/popup__input_error_card-link.css);
-@import url(../blocks/popup/__input/_error/popup__input_error_about.css);

@@ -1,6 +1,7 @@
 .popup__save {
   justify-self: end;
-  margin: 0 auto;
+  /* margin: 0 auto; */
+  margin: 18px 36px 36px;
   padding: 0;
   background: #000;
   color: #fff;

@@ -66,9 +66,9 @@ const openPopup = (popup) => {
 };
 
 //function закрытие при клике вне popup
-function popupCloseOverlay(event) {
-  if (event.target === event.currentTarget) {
-    closePopup(editModal);
+function popupCloseOverlay(evt){
+  if (evt.target === evt.currentTarget){
+    closePopup(evt.target)
   }
 }
 
@@ -92,7 +92,7 @@ closeEditProfileBtn.addEventListener("click", () => closePopup(editModal));
 //close  popup при клике вне
 editModal.addEventListener("mousedown", popupCloseOverlay);
 addCardModal.addEventListener("mousedown", popupCloseOverlay);
-previewModal.addEventListener("mousedown", popupCloseOverlay(previewModal));
+previewModal.addEventListener("mousedown", popupCloseOverlay);
 //! addcard popup
 addCardBtn.addEventListener("click", () => openPopup(addCardModal));
 closeAddCardBtn.addEventListener("click", () => closePopup(addCardModal));
@@ -100,14 +100,13 @@ closeAddCardBtn.addEventListener("click", () => closePopup(addCardModal));
 closePreviewBtn.addEventListener("click", () => closePopup(previewModal));
 
 
-function preview(e) {
+function preview(evt) {
   openPopup(previewModal);
-  previewImg.src = e.target.src;
-  previewImg.alt = e.target.alt;
-  previewCaption.textContent = e.target.nextElementSibling.textContent;
+  previewImg.src = evt.target.src;
+  previewImg.alt = evt.target.alt;
+  previewCaption.textContent = evt.target.nextElementSibling.textContent;
 }
 
-// initialCards.forEach(ceateCard);
 
 function placeCard(cardElement) {
   list.prepend(cardElement);
