@@ -1,4 +1,4 @@
-.popup__input_error-message {
+.popup__input-error-message {
   /* margin: 0 auto; */
   width: 100%;
   margin: 5px 36px;
@@ -11,7 +11,7 @@
   /* border: none; */
 }
 @media screen and (max-width: 786px) {
-  .popup__input_error-message {
+  .popup__input-error-message {
     max-width: 238px;
   }
 }
