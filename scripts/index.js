@@ -68,7 +68,7 @@ const openPopup = (popup) => {
 function popupCloseOverlay(evt) {
   if (evt.target === evt.currentTarget) {
     closePopup(evt.target);
-      }
+  }
 }
 
 function closeOverlay(evt) {
@@ -135,7 +135,7 @@ initialCards.forEach((cardData) => {
 
 addCardForm.addEventListener("submit", () => {
   const newCard = { name: inputCardName.value, link: inputCardLink.value };
-renderCard(newCard);
+  renderCard(newCard);
 });
 
 function like(e) {
