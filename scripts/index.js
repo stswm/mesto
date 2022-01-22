@@ -68,7 +68,7 @@ const openPopup = (popup) => {
 function popupCloseOverlay(evt) {
   if (evt.target === evt.currentTarget) {
     closePopup(evt.target);
-  }
+      }
 }
 
 function closeOverlay(evt) {
