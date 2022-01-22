@@ -55,26 +55,30 @@ const list = document.querySelector(".elements");
 const previewImg = previewModal.querySelector(".preview__img");
 const previewCaption = previewModal.querySelector(".preview__caption");
 
-//function открытие и закрытие popup
-// const togglePopup = (popup) => {
-//   popup.classList.toggle("popup_opend");
-//   inputProfileName.value = currentName.textContent;
-//   inputProfileAbout.value = currentAbout.textContent;
-// };
+
 function closePopup(popup) {
   popup.classList.remove("popup_opend");
+  document.removeEventListener('keydown', closeOverlay);
 }
 const openPopup = (popup) => {
   popup.classList.add("popup_opend");
+  document.addEventListener('keydown', closeOverlay);
 };
 
 //function закрытие при клике вне popup
 function popupCloseOverlay(event) {
   if (event.target === event.currentTarget) {
-    // editModal.classList.remove("popup_opend");
     closePopup(editModal);
   }
 }
+
+function closeOverlay(evt){
+  if (evt.key === 'Escape'){
+    const opendOverlay = document.querySelector('.popup_opend');
+    closePopup(opendOverlay)
+  }
+}
+
 
 //! блок изменения профиля popup
 //open editProfile popup
@@ -85,8 +89,10 @@ editProfileBtn.addEventListener("click", () => {
 });
 //close editProfile popup
 closeEditProfileBtn.addEventListener("click", () => closePopup(editModal));
-//close editProfile popup при клике вне
-editModal.addEventListener("click", popupCloseOverlay);
+//close  popup при клике вне
+editModal.addEventListener("mousedown", popupCloseOverlay);
+addCardModal.addEventListener("mousedown", popupCloseOverlay);
+previewModal.addEventListener("mousedown", popupCloseOverlay(previewModal));
 //! addcard popup
 addCardBtn.addEventListener("click", () => openPopup(addCardModal));
 closeAddCardBtn.addEventListener("click", () => closePopup(addCardModal));
@@ -154,7 +160,7 @@ editForm.addEventListener("submit", (e) => {
   e.preventDefault();
   currentAbout.textContent = inputProfileAbout.value;
   currentName.textContent = inputProfileName.value;
-  closePopup(editModal);
+  //todo вернуть closePopup(editModal);
 });
 
 
@@ -165,6 +171,6 @@ addCardForm.addEventListener("submit", (event) => {
     link: inputCardLink.value,
   });
   addCardForm.reset();
-  closePopup(addCardModal);
+  //todo вернуть closePopup(addCardModal);
 });
 
