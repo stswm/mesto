@@ -92,10 +92,10 @@ editModal.addEventListener("mousedown", popupCloseOverlay);
 addCardModal.addEventListener("mousedown", popupCloseOverlay);
 previewModal.addEventListener("mousedown", popupCloseOverlay);
 //! addcard popup
-addCardBtn.addEventListener("click", () => openPopup(addCardModal));
+addCardBtn.addEventListener("click", () => {openPopup(addCardModal);addCardForm.reset()});
 closeAddCardBtn.addEventListener("click", () => closePopup(addCardModal));
 
-closePreviewBtn.addEventListener("click", () => closePopup(previewModal));
+closePreviewBtn.addEventListener("click", () => {closePopup(previewModal)});
 
 function preview(evt) {
   openPopup(previewModal);
