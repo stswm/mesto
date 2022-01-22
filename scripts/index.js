@@ -135,7 +135,7 @@ initialCards.forEach((cardData) => {
 
 addCardForm.addEventListener("submit", () => {
   const newCard = { name: inputCardName.value, link: inputCardLink.value };
-  renderCard(newCard);
+renderCard(newCard);
 });
 
 function like(e) {

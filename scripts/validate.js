@@ -19,9 +19,7 @@ function hideError(input, errorContainer, { inputErrorClass }) {
 //? popup submit button validation
 function toggleButton(form, { submitButtonSelector, inactiveButtonClass }) {
   const button = form.querySelector(submitButtonSelector);
-  console.log(button);
   const isFormValid = form.checkValidity();
-  console.log("isFormValid=>", isFormValid);
   if (isFormValid) {
     button.classList.remove(inactiveButtonClass);
     button.removeAttribute("disabled");
