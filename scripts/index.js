@@ -61,7 +61,7 @@ function closePopup(popup) {
   popup.classList.remove("popup_opend");
   document.removeEventListener("keydown", closeOverlayByEsc);
 }
-const openPopup = (popup) => {
+function openPopup (popup) {
   popup.classList.add("popup_opend");
   document.addEventListener("keydown", closeOverlayByEsc);
 };
@@ -79,11 +79,50 @@ function closeOverlayByEsc(evt) {
     closePopup(opendOverlay);
   }
 }
+function renderCard(data) {
+  const newCard = createCard(data);
+  list.prepend(newCard);
+}
+
+function preview(evt) {
+  previewImg.src = evt.target.src;
+  previewImg.alt = evt.target.alt;
+  previewCaption.textContent = evt.target.nextElementSibling.textContent;
+  openPopup(previewModal);
+}
+
+function createCard(data) {
+  const cardElement = cardTemp.cloneNode(true);
+  cardElement.querySelector(".element__pic").src = data.link;
+  cardElement.querySelector(".element__pic").alt = data.name;
+  cardElement.querySelector(".element__text").textContent = data.name;
+  const cardImage = cardElement.querySelector(".element__pic");
+  
+  const deleteBtn = cardElement.querySelector(".element__delete");
+  const likeBtn = cardElement.querySelector(".element__heart");
+  
+  deleteBtn.addEventListener("click", deleteHandler);
+  likeBtn.addEventListener("click", like);
+  cardImage.addEventListener("click", preview);
+  
+  return cardElement;
+}
+
+function like(e) {
+  e.target.classList.toggle("element__heart_active");
+}
+function deleteHandler(e) {
+  e.target.closest(".element").remove();
+}
+function imagePreview(e) {
+  e.addEventListener("click", () => openPopup(previewModal));
+}
+
 
 //! Сброс кнопки в addcard перед открытием
 function resetAddCardBtn(btnSaveAddCard) {
-    btnSaveAddCard.classList.add("popup__save_notvalid");
-    btnSaveAddCard.setAttribute("disabled", true);
+  btnSaveAddCard.classList.add("popup__save_notvalid");
+  btnSaveAddCard.setAttribute("disabled", true);
 }
 
 //! блок изменения профиля popup
@@ -110,34 +149,6 @@ closeAddCardBtn.addEventListener("click", () => closePopup(addCardModal));
 
 closePreviewBtn.addEventListener("click", () => {closePopup(previewModal)});
 
-function preview(evt) {
-  previewImg.src = evt.target.src;
-  previewImg.alt = evt.target.alt;
-  previewCaption.textContent = evt.target.nextElementSibling.textContent;
-  openPopup(previewModal);
-}
-
-function createCard(data) {
-  const cardElement = cardTemp.cloneNode(true);
-  cardElement.querySelector(".element__pic").src = data.link;
-  cardElement.querySelector(".element__pic").alt = data.name;
-  cardElement.querySelector(".element__text").textContent = data.name;
-  const cardImage = cardElement.querySelector(".element__pic");
-
-  const deleteBtn = cardElement.querySelector(".element__delete");
-  const likeBtn = cardElement.querySelector(".element__heart");
-
-  deleteBtn.addEventListener("click", deleteHandler);
-  likeBtn.addEventListener("click", like);
-  cardImage.addEventListener("click", preview);
-
-  return cardElement;
-}
-function renderCard(data) {
-  const newCard = createCard(data);
-  list.prepend(newCard);
-}
-
 initialCards.forEach((cardData) => {
   renderCard(cardData);
 });
@@ -154,15 +165,6 @@ addCardForm.addEventListener("submit", (e) => {
   renderCard(newCard);
 });
 
-function like(e) {
-  e.target.classList.toggle("element__heart_active");
-}
-function deleteHandler(e) {
-  e.target.closest(".element").remove();
-}
-function imagePreview(e) {
-  e.addEventListener("click", () => openPopup(previewModal));
-}
 
 editForm.addEventListener("submit", (e) => {
   e.preventDefault();
