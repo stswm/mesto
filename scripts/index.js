@@ -46,6 +46,8 @@ const addCardBtn = document.querySelector(".profile__add-button");
 const closeAddCardBtn = addCardModal.querySelector(".popup__close");
 const closePreviewBtn = previewModal.querySelector(".popup__close");
 
+const btnSaveAddCard = addCardModal.querySelector(".popup__save_add");
+
 const currentName = document.querySelector(".profile__name");
 const currentAbout = document.querySelector(".profile__about");
 
@@ -57,55 +59,62 @@ const previewCaption = previewModal.querySelector(".preview__caption");
 
 function closePopup(popup) {
   popup.classList.remove("popup_opend");
-  document.removeEventListener("keydown", closeOverlay);
+  document.removeEventListener("keydown", closeOverlayByEsc);
 }
 const openPopup = (popup) => {
   popup.classList.add("popup_opend");
-  document.addEventListener("keydown", closeOverlay);
+  document.addEventListener("keydown", closeOverlayByEsc);
 };
 
 //function закрытие при клике вне popup
-function popupCloseOverlay(evt) {
+function popupcloseOverlayByEsc(evt) {
   if (evt.target === evt.currentTarget) {
     closePopup(evt.target);
   }
 }
 
-function closeOverlay(evt) {
+function closeOverlayByEsc(evt) {
   if (evt.key === "Escape") {
     const opendOverlay = document.querySelector(".popup_opend");
     closePopup(opendOverlay);
   }
 }
 
+//! Сброс кнопки в addcard перед открытием
+function resetAddCardBtn(btnSaveAddCard) {
+    btnSaveAddCard.classList.add("popup__save_notvalid");
+    btnSaveAddCard.setAttribute("disabled", true);
+}
+
 //! блок изменения профиля popup
 //open editProfile popup
-editProfileBtn.addEventListener("click", () => {
-  openPopup(editModal);
+editProfileBtn.addEventListener("click",fillingEditPopup)
+function fillingEditPopup() {
   inputProfileName.value = currentName.textContent;
   inputProfileAbout.value = currentAbout.textContent;
-});
+  openPopup(editModal);
+};
 //close editProfile popup
 closeEditProfileBtn.addEventListener("click", () => closePopup(editModal));
 //close  popup при клике вне
-editModal.addEventListener("mousedown", popupCloseOverlay);
-addCardModal.addEventListener("mousedown", popupCloseOverlay);
-previewModal.addEventListener("mousedown", popupCloseOverlay);
+editModal.addEventListener("mousedown", popupcloseOverlayByEsc);
+addCardModal.addEventListener("mousedown", popupcloseOverlayByEsc);
+previewModal.addEventListener("mousedown", popupcloseOverlayByEsc);
 //! addcard popup
-addCardBtn.addEventListener("click", () => {openPopup(addCardModal);addCardForm.reset()});
+addCardBtn.addEventListener("click", () => {
+  addCardForm.reset();
+  resetAddCardBtn(btnSaveAddCard);
+  openPopup(addCardModal);
+});
 closeAddCardBtn.addEventListener("click", () => closePopup(addCardModal));
 
 closePreviewBtn.addEventListener("click", () => {closePopup(previewModal)});
 
 function preview(evt) {
-  openPopup(previewModal);
   previewImg.src = evt.target.src;
   previewImg.alt = evt.target.alt;
   previewCaption.textContent = evt.target.nextElementSibling.textContent;
-}
-
-function placeCard(cardElement) {
-  list.prepend(cardElement);
+  openPopup(previewModal);
 }
 
 function createCard(data) {
@@ -133,8 +142,15 @@ initialCards.forEach((cardData) => {
   renderCard(cardData);
 });
 
-addCardForm.addEventListener("submit", () => {
+addCardForm.addEventListener("submit", (e) => {
   const newCard = { name: inputCardName.value, link: inputCardLink.value };
+  e.preventDefault();
+  createCard({
+    name: inputCardName.value,
+    link: inputCardLink.value,
+  });
+  closePopup(addCardModal);
+  addCardForm.reset();
   renderCard(newCard);
 });
 
@@ -155,12 +171,12 @@ editForm.addEventListener("submit", (e) => {
   closePopup(editModal);
 });
 
-addCardForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  createCard({
-    name: inputCardName.value,
-    link: inputCardLink.value,
-  });
-  addCardForm.reset();
-  closePopup(addCardModal);
-});
+// addCardForm.addEventListener("submit", (event) => {
+//   event.preventDefault();
+//   createCard({
+//     name: inputCardName.value,
+//     link: inputCardLink.value,
+//   });
+//   closePopup(addCardModal);
+//   addCardForm.reset();
+// });

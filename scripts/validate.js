@@ -2,21 +2,21 @@ function submitForm(event) {
   event.preventDefault();
 }
 
-// ? popup validation error text
+// ? popup validation error text show
 function showError(input, errorContainer, { inputErrorClass }) {
   input.classList.add(inputErrorClass);
   errorContainer.style.visibility = "";
   errorContainer.textContent = input.validationMessage;
 }
 
-// ? popup validation error text
+// ? popup validation error text hide
 function hideError(input, errorContainer, { inputErrorClass }) {
   input.classList.remove(inputErrorClass);
   errorContainer.style.visibility = "hidden";
   errorContainer.textContent = "";
 }
 
-//? popup submit button validation
+//? popup submit button validation toggle
 function toggleButton(form, { submitButtonSelector, inactiveButtonClass }) {
   const button = form.querySelector(submitButtonSelector);
   const isFormValid = form.checkValidity();
