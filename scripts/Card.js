@@ -5,11 +5,11 @@ export class Card {
   constructor(data, cardTemplateSelector) {
     this._name = data.name;
     this._link = data.link;
-    this._template = document.querySelector(cardTemplateSelector).content;
+    this._template = document.querySelector(cardTemplateSelector).content.querySelector('.element');
   }
   _deleteHandler = (e) => {
-    e.target.closest(".element").remove();
-    // this._cardElement.remove();
+    // e.target.closest(".element").remove();
+    this._cardElement.remove();
   };
   _like = () => {
     this._likeBtn.classList.toggle("element__heart_active");
@@ -35,7 +35,7 @@ export class Card {
     // this._cardElement = this._template.cloneNode(true);
     this._cardElement = document
       .querySelector(".cardTemp")
-      .content.cloneNode(true);
+      .content.querySelector('.element').cloneNode(true);
     this._deleteBtn = this._cardElement.querySelector(".element__delete");
     this._cardImage = this._cardElement.querySelector(".element__pic");
     this._likeBtn = this._cardElement.querySelector(".element__heart");
