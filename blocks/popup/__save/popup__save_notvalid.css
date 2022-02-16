@@ -5,3 +5,8 @@
   cursor: default;
   color: #000000;
 }
+@media screen and (max-width: 786px) {
+  .popup__save_notvalid {
+    margin: 0 22px 0;
+  }
+}

@@ -18,6 +18,7 @@
 @media screen and (max-width: 786px) {
   .popup__save {
     /* background-size: contain; */
+    margin: 0 22px 0;
     height: 46px;
     max-width: 238px;
     font-size: 14px;
