@@ -1,17 +1,17 @@
-import { previewModal, previewImg, previewCaption } from "./constans.js";
+import { previewModal, previewImg, previewCaption, cardTemplateSelector } from "./constans.js";
 import { openPopup } from "./utils.js";
 
 export class Card {
-  constructor(data, cardTemplateSelector) {
+  constructor(data) {
     this._name = data.name;
     this._link = data.link;
     this._template = this._getTemplate;
   }
   _getTemplate = () => {
-    const template = document.querySelector(".cardTemp").content.querySelector('.element');
+    const template = document.querySelector(cardTemplateSelector).content.querySelector('.element');
     return template
   }
-  _deleteHandler = (e) => {
+  _deleteHandler = () => {
     this._cardElement.remove();
   };
   _like = () => {
