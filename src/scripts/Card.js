@@ -1,11 +1,11 @@
 import { previewModal, previewImg, previewCaption, cardTemplateSelector } from "./constans.js";
-import { openPopup } from "./utils.js";
 
-export class Card {
-  constructor(data) {
-    this._name = data.name;
-    this._link = data.link;
+export default class Card {
+  constructor({name, link}, handleCardClick) {
+    this._name = name;
+    this._link = link;
     this._template = this._getTemplate;
+    this._handleCardClick = handleCardClick;
   }
   _getTemplate = () => {
     const template = document.querySelector(cardTemplateSelector).content.querySelector('.element');
@@ -26,8 +26,9 @@ export class Card {
   _setEventListeners = () => {
     this._likeBtn.addEventListener("click", this._like);
     this._deleteBtn.addEventListener("click", this._deleteHandler);
-    this._cardImage.addEventListener("click", this._preview);
+    this._cardImage.addEventListener("click", () => {this._handleCardClick()});
   };
+
   _fillCard = () => {
     this._cardElement.querySelector(".element__pic").src = this._link;
     this._cardElement.querySelector(".element__pic").alt = this._name;
