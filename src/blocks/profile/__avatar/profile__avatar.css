@@ -4,7 +4,7 @@
   border-radius: 50%;
   object-fit: cover;
   margin-right: 30px;
-  cursor: pointer;
+  cursor: default;
 }
 @media screen and (max-width: 768px) {
   .profile__avatar {

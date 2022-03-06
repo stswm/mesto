@@ -1,4 +1,4 @@
-export class FormValidator {
+export default class FormValidator {
   constructor(settings, form) {
     this._form = form;
     this._settings = settings;
@@ -19,6 +19,7 @@ export class FormValidator {
     btnSaveAddCard.classList.add("popup__save_notvalid");
     btnSaveAddCard.setAttribute("disabled", true);
   };
+
 
   _showError(input, errorContainer) {
     input.classList.add(this._settings.inputErrorClass);
@@ -45,10 +46,6 @@ export class FormValidator {
     }
   }
 
-  _resetAddCardBtn(btnSaveAddCard) {
-    btnSaveAddCard.classList.add("popup__save_notvalid");
-    btnSaveAddCard.setAttribute("disabled", true);
-  }
 
   enableValidation() {
     this._form.addEventListener("submit", (evt) => {
