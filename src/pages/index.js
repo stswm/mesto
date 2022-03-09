@@ -48,7 +48,8 @@ const addCardValid = new FormValidator(validationParams, addCardForm);
 addCardValid.enableValidation();
 
 // инициализация карточек
-//todo initialCards(defaultCards);
+//todo 
+initialCards(defaultCards);
 
 //! класс изменения профиля popup
 const editProfile = new PopupWithForm(
@@ -100,51 +101,50 @@ function disableSaveBtn(btn){
   btn.setAttribute("disabled", true);
 };
 
-function createCard(data) {
-  const card = new Card(data, cardTemplateSelector,() => {
-  popupWithImage.open(data) ;
-});
-  return card.createCard();
-}
-const cardsList = new Section(
-  {
-    data: defaultCards,
-    renderer: (data) => {
-      const cardElement = createCard(data);
-      cardsList.addItem(cardElement);
-    },
-  },
-  defaultCards
-);
-
-cardsList.renderItems();
-
-//todo
-// function renderCard(data) {
-//   const card = new Card(
-//     data,
-//     () => popupWithImage.open(data),
-//     cardTemplateSelector
-//     );
-//   const cardElement = card.createCard();
-//   cardList.addItem(cardElement);
+// function createCard(data) {
+//   const card = new Card(data, cardTemplateSelector,() => {
+//   popupWithImage.open(data) ;
+// });
+//   return card.createCard();
 // }
-
-//todo
-// function initialCards(defaultCards) {
-//   defaultCards.reverse();
-  
-//   // Рендер массива начальных карточек
-//   cardList = new Section(
-//     {
-//       data: defaultCards,
-//       // renderer: (card) => renderCard(card),
-//       renderer: (card) => renderCard(card),
+// const cardsList = new Section(
+//   {
+//     data: defaultCards,
+//     renderer: (data) => {
+//       const cardElement = createCard(data);
+//       cardsList.addItem(cardElement);
 //     },
-//     list
-//   );
-//   cardList.renderItems();
-// }
+//   },
+//   defaultCards
+// );
+
+// cardsList.renderItems();
+
+
+function renderCard(data) {
+  const card = new Card(
+    data,
+    () => popupWithImage.open(data),
+    cardTemplateSelector
+    );
+  const cardElement = card.createCard();
+  cardList.addItem(cardElement);
+}
+
+function initialCards(defaultCards) {
+  defaultCards.reverse();
+  
+  // Рендер массива начальных карточек
+  cardList = new Section(
+    {
+      data: defaultCards,
+      // renderer: (card) => renderCard(card),
+      renderer: (card) => renderCard(card),
+    },
+    list
+  );
+  cardList.renderItems();
+}
 
 
 
