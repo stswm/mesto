@@ -1,14 +1,13 @@
-import { previewModal, previewImg, previewCaption, cardTemplateSelector } from "./constans.js";
-
 export default class Card {
-  constructor({name, link}, handleCardClick) {
+  constructor({name, link}, handleCardClick, cardTemplateSelector) {
     this._name = name;
     this._link = link;
+    this._cardTemplateSelector =cardTemplateSelector,
     this._template = this._getTemplate;
     this._handleCardClick = handleCardClick;
   }
   _getTemplate = () => {
-    const template = document.querySelector(cardTemplateSelector).content.querySelector('.element');
+    const template = document.querySelector(this._cardTemplateSelector).content.querySelector('.element');
     return template
   }
   _deleteHandler = () => {
@@ -17,12 +16,7 @@ export default class Card {
   _like = () => {
     this._likeBtn.classList.toggle("element__heart_active");
   };
-  _preview = () => {
-    previewImg.src = this._link;
-    previewImg.alt = this._name;
-    previewCaption.textContent = this._name;
-    openPopup(previewModal);
-  };
+
   _setEventListeners = () => {
     this._likeBtn.addEventListener("click", this._like);
     this._deleteBtn.addEventListener("click", this._deleteHandler);
@@ -30,8 +24,8 @@ export default class Card {
   };
 
   _fillCard = () => {
-    this._cardElement.querySelector(".element__pic").src = this._link;
-    this._cardElement.querySelector(".element__pic").alt = this._name;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
     this._cardElement.querySelector(".element__text").textContent = this._name;
   };
 

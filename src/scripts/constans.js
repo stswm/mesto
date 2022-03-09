@@ -6,7 +6,7 @@ const Kazan = new URL('../img/Kazan.jpg', import.meta.url);
 const SaintP = new URL('../img/SaintP.jpg', import.meta.url);
 const Moscow = new URL('../img/Moscow.jpg', import.meta.url);
 
-export const defaultCards = [
+export let defaultCards = [
   {
     name: "Москва",
     link: Moscow,
@@ -37,7 +37,7 @@ export const defaultCards = [
 // modal
 export const editModal = document.querySelector(".popup_type_edit");
 export const addCardModal = document.querySelector(".popup_type_add-card");
-export const previewModal = document.querySelector(".preview");
+export const previewModal = document.querySelector(".preview_pop");
 //forms
 export const editProfileForm = editModal.querySelector(".popup__container");
 export const addCardForm = addCardModal.querySelector(".popup__container");

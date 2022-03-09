@@ -2,6 +2,9 @@ export default class FormValidator {
   constructor(settings, form) {
     this._form = form;
     this._settings = settings;
+    this._button = this._form.querySelector(
+      this._settings.submitButtonSelector
+    );
   }
 
   _validateInput(input, classes) {
@@ -15,12 +18,6 @@ export default class FormValidator {
     this._toggleButton(this._form.form, classes);
   }
 
-  _resetAddCardBtn = (btnSaveAddCard) => {
-    btnSaveAddCard.classList.add("popup__save_notvalid");
-    btnSaveAddCard.setAttribute("disabled", true);
-  };
-
-
   _showError(input, errorContainer) {
     input.classList.add(this._settings.inputErrorClass);
     errorContainer.style.visibility = "";
@@ -33,16 +30,16 @@ export default class FormValidator {
   }
 
   _toggleButton() {
-    const button = this._form.querySelector(
-      this._settings.submitButtonSelector
-    );
+    // const button = this._form.querySelector(
+    //   this._settings.submitButtonSelector
+    // );
     const isFormValid = this._form.checkValidity();
     if (isFormValid) {
-      button.classList.remove(this._settings.inactiveButtonClass);
-      button.removeAttribute("disabled");
+      this._button.classList.remove(this._settings.inactiveButtonClass);
+      this._button.removeAttribute("disabled");
     } else {
-      button.classList.add(this._settings.inactiveButtonClass);
-      button.setAttribute("disabled", true);
+      this._button.classList.add(this._settings.inactiveButtonClass);
+      this._button.setAttribute("disabled", true);
     }
   }
 
