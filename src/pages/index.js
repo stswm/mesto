@@ -25,15 +25,15 @@ import {
 } from "../scripts/constans.js";
 import PopupWithForm from "../scripts/PopupWithForm";
 import UserInfo from "../scripts/UserInfo";
-import PopupWithImage from '../scripts/PopupWithImage';
-import Section from "../scripts/Section.js";
+import { PopupWithImage } from '../scripts/PopupWithImage';
+import { Section} from "../scripts/Section.js";
 
 let cardList;
 
 const popupWithImage = new PopupWithImage(".preview_pop");
 popupWithImage.setEventListeners();
 
-let newCard = new Card (
+let newCard = new Card (                  //!NEED FIX (delete) IT
   { name: inputCardName.value,
     link: inputCardLink.value }
   );
@@ -56,8 +56,8 @@ const editProfile = new PopupWithForm(
   {
     formSelector: editProfileForm,
     handleFormSubmit: (e) => {
-      e.preventDefault();
-      userInfo.setUserInfo({ 
+      // e.preventDefault();
+      userInfo.setUserInfo({        //!NEED FIX IT
         name:inputProfileName.value,
         about:inputProfileAbout.value
       });
@@ -72,17 +72,17 @@ const addCard = new PopupWithForm(
   {
     formSelector: addCardForm,
     handleFormSubmit: (e) => {
-    e.preventDefault();
-    newCard.name = inputCardName.value
+    newCard.name = inputCardName.value        //!NEED FIX IT
     newCard.link = inputCardLink.value
+    
     renderCard(newCard);
+      
     addCard.close();
-    },
+  },
   },
   ".popup_type_add-card"
 );
 addCard.setEventListeners();
-
 
 
 editProfileBtn.addEventListener("click", () => {
@@ -101,27 +101,21 @@ function disableSaveBtn(btn){
   btn.setAttribute("disabled", true);
 };
 
-// function createCard(data) {
-//   const card = new Card(data, cardTemplateSelector,() => {
-//   popupWithImage.open(data) ;
-// });
-//   return card.createCard();
+// function cardCreate(data) {
+//   const cardNew = new Card (
+//     data,
+//     () => popupWithImage.open(data),
+//     cardTemplateSelector
+//   );
+
+//   return cardNew
 // }
-// const cardsList = new Section(
-//   {
-//     data: defaultCards,
-//     renderer: (data) => {
-//       const cardElement = createCard(data);
-//       cardsList.addItem(cardElement);
-//     },
-//   },
-//   defaultCards
-// );
-
-// cardsList.renderItems();
-
-
-function renderCard(data) {
+// function renderCard(data) {             
+//   const cardNew = cardCreate(data);
+//   cardList.addItem(cardNew);
+// }
+//todoworced
+function renderCard(data) {             //!NEED FIX IT
   const card = new Card(
     data,
     () => popupWithImage.open(data),
@@ -138,13 +132,10 @@ function initialCards(defaultCards) {
   cardList = new Section(
     {
       data: defaultCards,
-      // renderer: (card) => renderCard(card),
       renderer: (card) => renderCard(card),
     },
     list
   );
   cardList.renderItems();
 }
-
-
 
