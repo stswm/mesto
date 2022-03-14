@@ -7,6 +7,20 @@ export default class FormValidator {
     );
   }
 
+  _desableButton() {
+    this._button.classList.add(this._settings.inactiveButtonClass);
+    this._button.setAttribute("disabled", true);
+  }
+
+  resetValidation() {
+    this._desableButton()
+    
+    this._inputs.forEach(input => {
+      const errorContainer = this._form.querySelector(`#error_${input.id}`);
+      this._hideError(input, errorContainer)
+    })
+  }
+
   _validateInput(input, classes) {
     const errorContainer = this._form.querySelector(`#error_${input.id}`);
 
@@ -30,16 +44,12 @@ export default class FormValidator {
   }
 
   _toggleButton() {
-    // const button = this._form.querySelector(
-    //   this._settings.submitButtonSelector
-    // );
     const isFormValid = this._form.checkValidity();
     if (isFormValid) {
       this._button.classList.remove(this._settings.inactiveButtonClass);
       this._button.removeAttribute("disabled");
     } else {
-      this._button.classList.add(this._settings.inactiveButtonClass);
-      this._button.setAttribute("disabled", true);
+      this._desableButton()
     }
   }
 
