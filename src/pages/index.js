@@ -14,13 +14,13 @@ import {
   list,
   validationParams,
   cardTemplateSelector,
-} from "../scripts/constans.js";
+} from "../utils/constans.js";
 import PopupWithForm from "../scripts/PopupWithForm";
 import UserInfo from "../scripts/UserInfo";
 import { PopupWithImage } from '../scripts/PopupWithImage';
 import { Section} from "../scripts/Section.js";
 
-let cardList = new Section({
+const cardList = new Section({
     data: defaultCards.reverse(),
     renderer: renderCard,
   }, list);
@@ -67,6 +67,7 @@ editProfileBtn.addEventListener("click", () => {
   const test = userInfo.getUserInfo();
   inputProfileName.value = test.name;
   inputProfileAbout.value = test.about;
+  profileEditValid.resetValidation()
   
   editProfile.open();
 });
@@ -75,10 +76,7 @@ addCardBtn.addEventListener("click", () => {
   addCardValid.resetValidation()
   addCard.open();
 });
-editProfileBtn.addEventListener("click", () => {
-  profileEditValid.resetValidation()
-  editProfile.open();
-});
+
 
 function createCard(data) {
   const card = new Card(
