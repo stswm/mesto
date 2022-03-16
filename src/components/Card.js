@@ -1,4 +1,4 @@
-export default class Card {
+export class Card {
   constructor(data,
     handleCardClick,
     cardTemplateSelector) {
