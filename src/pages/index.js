@@ -28,13 +28,6 @@ import { api } from "../components/Api.js";
 
 let userId;
 
-// Promise.all([api.getProfile(), api.getInitialCards()])
-//   .then(([userInfo, cardList]) => {
-//     id = userInfo._id;
-//     initUser(userInfo);
-//     initCards(cardList);
-//   })
-//   .catch((err) => console.log(err));
 //подгружаем профиль
 api.getProfile().then((res) => {
   userInfo.setUserInfo({
@@ -85,31 +78,44 @@ const popupWithImage = new PopupWithImage(".preview_pop");
 popupWithImage.setEventListeners();
 // Меняем профиль
 const editProfile = new PopupWithForm((data) => {
+  editProfile.dataLoading(true)
   api.editProfile(data.name, data.about, data.avatar).then((res) => {
     userInfo.setUserInfo(res);
     editProfile.close();
-  });
+  }).finally(()=>{
+    editProfile.dataLoading(false)
+  })
 }, ".popup_type_edit");
 editProfile.setEventListeners();
 // изменение аватарки
 
 const newAvatarModal = new PopupWithForm((data) => {
-  api.changeAvatar(data.avatar).then((res) => {
-    userInfo.setUserInfo(res);
-    newAvatarModal.close();
-  })
+  newAvatarModal.dataLoading(true);
+  api
+    .changeAvatar(data.avatar)
+    .then((res) => {
+      userInfo.setUserInfo(res);
+      newAvatarModal.close();
+    })
+    .finally(() => {
+      newAvatarModal.dataLoading(false);
+    });
 }, ".popup_type_edit-avatar");
 
 newAvatarModal.setEventListeners();
 // класс попап добавления карточки
 const addCard = new PopupWithForm((data) => {
-  api.addCard(data.name, data.link, data.likes).then((res) => {
-    // console.log(res);
-    // renderCard(res);
-    const cardElement = createCard(res);
-    section.addNewCard(cardElement);
-    addCard.close();
-  });
+  addCard.dataLoading(true);
+  api
+    .addCard(data.name, data.link, data.likes)
+    .then((res) => {
+      const cardElement = createCard(res);
+      section.addNewCard(cardElement);
+      addCard.close();
+    })
+    .finally(() => {
+      addCard.dataLoading(false);
+    });
 }, ".popup_type_add-card");
 addCard.setEventListeners();
 
@@ -152,10 +158,14 @@ function createCard(data) {
     (id) => {
       confirmModal.open();
       confirmModal.changeSubmitHandler(() => {
+        confirmModal.dataLoading(true)
         api.deleteCard(id).then((res) => {
           card.deleteCard();
           confirmModal.close();
-        });
+        })
+        .finally(()=>{
+          confirmModal.dataLoading(false)
+        })
       });
     },
     (_id) => {
@@ -177,7 +187,6 @@ function renderCard(data) {
   const cardElement = createCard(data);
   section.addItem(cardElement);
 }
-
 
 // инициализация карточек
 section.renderItems();

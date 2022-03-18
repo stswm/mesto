@@ -6,6 +6,7 @@ export  class PopupWithForm extends Popup {
     this._handleFormSubmit = handleFormSubmit;
     this._form = this._popupWin.querySelector(".popup__container");
     this._inputs = [...this._form.querySelectorAll(".popup__input")];
+    this._oldText = this._form.querySelector(".popup__save").textContent
   }
 
   _getInputValues() {
@@ -19,6 +20,16 @@ export  class PopupWithForm extends Popup {
   changeSubmitHandler(newSubmitHandler){
     this._handleFormSubmit = newSubmitHandler
   }
+
+  dataLoading(isLoading) {
+  if (isLoading) {
+    
+    this._form.querySelector(".popup__save").textContent = "Сохранение...";
+    console.log(this._form.querySelector(".popup__save"));
+  } else {
+    this._form.querySelector(".popup__save").textContent = this._oldText;
+  }
+}
 
   setEventListeners() {
     super.setEventListeners();
