@@ -90,7 +90,8 @@ editProfile.setEventListeners();
 // изменение аватарки
 
 const newAvatarModal = new PopupWithForm((data) => {
-  newAvatarModal.dataLoading(true);
+  // newAvatarModal.dataLoading(true);
+  newAvatarModal.changeButtonsIfLoading(true)
   api
     .changeAvatar(data.avatar)
     .then((res) => {
@@ -98,7 +99,8 @@ const newAvatarModal = new PopupWithForm((data) => {
       newAvatarModal.close();
     })
     .finally(() => {
-      newAvatarModal.dataLoading(false);
+      // newAvatarModal.dataLoading(false);
+      newAvatarModal.changeButtonsIfLoading(false);
     });
 }, ".popup_type_edit-avatar");
 

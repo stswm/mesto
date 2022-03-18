@@ -20,7 +20,7 @@ export  class PopupWithForm extends Popup {
   changeSubmitHandler(newSubmitHandler){
     this._handleFormSubmit = newSubmitHandler
   }
-
+// реализация UX через замену текста в кнопке
   dataLoading(isLoading) {
   if (isLoading) {
     
@@ -28,6 +28,18 @@ export  class PopupWithForm extends Popup {
     console.log(this._form.querySelector(".popup__save"));
   } else {
     this._form.querySelector(".popup__save").textContent = this._oldText;
+  }
+}
+
+// А ожно раелизовать заменой кнопки на подменную
+changeButtonsIfLoading(test)
+{
+  if (test){
+    this._form.querySelector(".defaultBtn").style.display = 'none'
+    this._form.querySelector(".ifLoadingBtn").style.display = ''
+  } else {
+    this._form.querySelector(".defaultBtn").style.display = ''
+    this._form.querySelector(".ifLoadingBtn").style.display = 'none'
   }
 }
 

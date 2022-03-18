@@ -74,10 +74,10 @@
         <input name="avatar" id="avatar" class="popup__input popup__input_avatar"
           placeholder="Укажите ссылку на аватар" type="url" required>
         <span id="error_avatar" class="popup__input-error-message"></span>
-        <button id="editAvatar" class="popup__save popup__save_avatar" type="submit"
+        <button id="editAvatar" class="popup__save popup__save_avatar defaultBtn" type="submit"
           form="editAvatar">Сохранить</button>
-        <button id="editAvatar" class="popup__save popup__save_progress" type="submit"
-          form="">Сохраняем...</button>
+        <button id="editAvatar" class="popup__save ifLoadingBtn" type="submit"
+          form="" style="display: none;">Сохраняем...</button>
       </form>
     </div>
   </section>

@@ -43,6 +43,5 @@
 @import url(../blocks/preview/preview_pop/preview_pop.css);
 @import url(../blocks/popup/__input/popup__input_type_error.css);
 @import url(../blocks/popup/__save/popup__save_notvalid.css);
-@import url(../blocks/popup/__save/popup__save_progress.css);
 
 @import url(../blocks/popup/__input-error-message/popup__input-error-message.css);
