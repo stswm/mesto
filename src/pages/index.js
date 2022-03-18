@@ -141,7 +141,7 @@ editProfileBtn.addEventListener("click", () => {
   editProfile.open();
 });
 editAvatarBtn.addEventListener("click", () => {
-  document.querySelector(".preview-avatar").src =
+  document.querySelector(".popup__preview-avatar").src =
     userInfo.getUserInfo().avatar.src;
   // inputAvatar.value = userInfo.getUserInfo().avatar.src;
   avatarEditValid.resetValidation();

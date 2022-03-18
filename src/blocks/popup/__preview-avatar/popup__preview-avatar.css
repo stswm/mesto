@@ -1,0 +1,15 @@
+
+.popup__preview-avatar {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  /* margin-right: 30px; */
+  margin: 0;
+  cursor: default;
+}
+@media screen and (max-width: 768px) {
+  .popup__preview-avatar {
+    margin: 0;
+  }
+}
