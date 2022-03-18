@@ -23,9 +23,7 @@ export  class PopupWithForm extends Popup {
 // реализация UX через замену текста в кнопке
   dataLoading(isLoading) {
   if (isLoading) {
-    
     this._form.querySelector(".popup__save").textContent = "Сохранение...";
-    console.log(this._form.querySelector(".popup__save"));
   } else {
     this._form.querySelector(".popup__save").textContent = this._oldText;
   }

@@ -69,14 +69,14 @@
           <!-- да да да, надо переносить в css, но пока вообще не понятно
           допустимо ли такое отступление от макета на ревью -->
         <h2 class="popup__title">Обновить аватар</h2>
-        <img src="" alt="Фото профиля" class="profile__avatar preview__avatar">
+        <img src="//:0" alt="Фото профиля" class="profile__avatar preview__avatar">
         </div>
         <input name="avatar" id="avatar" class="popup__input popup__input_avatar"
           placeholder="Укажите ссылку на аватар" type="url" required>
         <span id="error_avatar" class="popup__input-error-message"></span>
         <button id="editAvatar" class="popup__save popup__save_avatar defaultBtn" type="submit"
           form="editAvatar">Сохранить</button>
-        <button id="editAvatar" class="popup__save ifLoadingBtn" type="submit"
+        <button class="popup__save ifLoadingBtn" type="submit"
           form="" style="display: none;">Сохраняем...</button>
       </form>
     </div>
@@ -103,7 +103,7 @@
       <button type="button" class="popup__close buttonEffect"></button>
       <form name="deleteConfirm" class="popup__container popup__container_confirm" id="deleteConfirm">
         <h2 class="popup__title popup__title-confirm">Вы уверены?</h2>
-        <button id="deleteConfirm" class="popup__save popup__delete-confirm" type="submit"
+        <button class="popup__save popup__delete-confirm" type="submit"
           form="deleteConfirm">Да</button>
       </form>
     </div>
