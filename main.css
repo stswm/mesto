@@ -43,6 +43,5 @@
 .preview_pop{background-color:rgba(0,0,0,.9)}
 .popup__input_type_error{border-color:red}
 .popup__save_notvalid{background:#f7f7f7;border:1px solid #000;color:#000;cursor:default;opacity:.2}@media screen and (max-width:786px){.popup__save_notvalid{margin:0 22px}}
-.popup__save_progress{display:none}
 .popup__input-error-message{box-sizing:border-box;color:red;font-size:12px;line-height:15px;margin:5px 36px;max-width:358px;min-height:30px;width:100%}@media screen and (max-width:786px){.popup__input-error-message{margin:0 22px;max-width:238px}}
 
