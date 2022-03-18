@@ -1,0 +1,10 @@
+.profile__avatar_type_editshell{
+  margin-right: 30px;
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+}
+
+.profile__avatar_type_editshell:hover{
+  background: url('../../../../img/avatarEdit.png') center/26px 26px no-repeat;
+}

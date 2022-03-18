@@ -1,4 +1,4 @@
-.profile__avatar_edit-button{
+.profile__avatar_type_edit-button{
 
     /* position: absolute; */
     top: 0;
@@ -15,7 +15,7 @@
     /* transition: all 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045); */
     /* opacity: 0.1; */
   }
-  /* .profile__avatar_edit-button:hover {
+  /* .profile__avatar_type_edit-button:hover {
     background: url("../../img/avatarEdit.png") center no-repeat;
     opacity: 0;
   } */
