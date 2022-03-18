@@ -1,0 +1,11 @@
+.profile__avatar_edit-shell{
+  margin-right: 30px;
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+}
+
+.profile__avatar_edit-shell:hover{
+  background: url('../../../img/avatarEdit.png') center/26px 26px no-repeat;
+  background-color: #C4C4C4;
+}

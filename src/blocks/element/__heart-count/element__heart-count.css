@@ -1,0 +1,11 @@
+.element__heart-count {
+  display: flex;
+  color: black;
+  justify-content: center;
+  margin-right: 20px;
+  margin-bottom: 22px;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+}

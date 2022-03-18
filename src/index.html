@@ -20,11 +20,19 @@
   </header>
   <main class="main">
     <section class="profile">
-      <img src="<%=require('./img/avatar2.jpg')%>" alt="Фото профиля" class="profile__avatar">
+    <div class="profile__avatar_edit-shell">
+      <button type="button" class="profile__avatar_edit-button buttonEffect">
+        <img src="<%=require('./img/avatar2.jpg')%>" alt="Фото профиля" class="profile__avatar">
+      </button>
+    </div>
       <div class="profile__info">
-        <h1 class="profile__name">Андрей Понкратов</h1>
+        <h1 class="profile__name">
+          <!-- Андрей Понкратов-->
+        </h1>
         <button type="button" class="profile__edit-button buttonEffect"></button>
-        <h2 class="profile__about">Журналист</h2>
+        <h2 class="profile__about">
+          <!--Журналист-->
+        </h2>
       </div>
       <button type="button" class="profile__add-button buttonEffect"></button>
     </section>
@@ -36,6 +44,7 @@
   <footer class="footer">
     <p class="footer__author">&copy; 2020 Mesto Russia</p>
   </footer>
+  <!-- ! popup редактирование профиля -->
   <section class="popup popup_type_edit">
     <div class="popup__shell">
       <button type="button" class="popup__close buttonEffect"></button>
@@ -51,6 +60,27 @@
       </form>
     </div>
   </section>
+  <!-- ! popup изменения аватарки -->
+  <section class="popup popup_type_edit-avatar">
+    <div class="popup__shell">
+      <button type="button" class="popup__close buttonEffect"></button>
+      <form name="editAvatar" class="popup__container editAvatar" id="editAvatar">
+        <div style="display: flex;justify-content: space-around;align-items: center;">
+          <!-- да да да, надо переносить в css, но пока вообще не понятно
+          допустимо ли такое отступление от макета на ревью -->
+        <h2 class="popup__title">Обновить аватар</h2>
+        <img src="" alt="Фото профиля" class="profile__avatar preview__avatar">
+        </div>
+        <input name="avatar" id="avatar" class="popup__input popup__input_avatar"
+          placeholder="Укажите ссылку на аватар" type="url" required>
+        <span id="error_avatar" class="popup__input-error-message"></span>
+        <button id="editAvatar" class="popup__save popup__save_avatar" type="submit"
+          form="editAvatar">Сохранить</button>
+        <button id="editAvatar" class="popup__save popup__save_progress" type="submit"
+          form="">Сохраняем...</button>
+      </form>
+    </div>
+  </section>
   <!-- ! newplace popup -->
   <section class="popup popup_type_add-card">
     <div class="popup__shell">
@@ -60,10 +90,21 @@
         <input name="name" id="card-name" class="popup__input popup__input_card-name" minlength="2" maxlength="30"
           placeholder="Название" type="text" required>
         <span id="error_card-name" class="popup__input-error-message"></span>
-        <input  name="link" id="card-link" class="popup__input popup__input_card-link" placeholder="Ссылка на картинку" type="url"
-          required>
+        <input name="link" id="card-link" class="popup__input popup__input_card-link" placeholder="Ссылка на картинку"
+          type="url" required>
         <span id="error_card-link" class="popup__input-error-message"></span>
         <button id="add" class="popup__save popup__save_add" type="submit" form="addCard">Сохранить</button>
+      </form>
+    </div>
+  </section>
+  <!-- ! popup удаление карточка -->
+  <section class="popup popup_type_delete-confirm">
+    <div class="popup__shell">
+      <button type="button" class="popup__close buttonEffect"></button>
+      <form name="deleteConfirm" class="popup__container popup__container_confirm" id="deleteConfirm">
+        <h2 class="popup__title popup__title-confirm">Вы уверены?</h2>
+        <button id="deleteConfirm" class="popup__save popup__delete-confirm" type="submit"
+          form="deleteConfirm">Да</button>
       </form>
     </div>
   </section>
@@ -81,7 +122,10 @@
       <button type="button" class="element__delete buttonEffect"></button>
       <img class="element__pic" src="//:0" alt="">
       <h2 class="element__text"></h2>
-      <button type="button" class="element__heart buttonEffect"></button>
+      <div class="likeShell">
+        <button type="button" class="element__heart buttonEffect"></button>
+        <span class="element__heart-count"></span>
+      </div>
     </li>
   </template>
 

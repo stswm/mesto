@@ -5,7 +5,10 @@
   width: 22px;
   height: 19px;
   border: none;
-  margin: 30px 20px;
+  /* margin: 30px 20px; */
+  margin-top: 22px;
+  margin-right: 20px;
+  margin-bottom: 3px;
   max-width: 22px;
   align-self: center;
   justify-self: end;
