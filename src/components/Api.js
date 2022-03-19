@@ -49,7 +49,7 @@ class Api {
   deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
-      headers: this._headers
+      headers: this._headers,
     })
       .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
       .catch(console.log);
@@ -58,16 +58,16 @@ class Api {
   deleteLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: "DELETE",
-      headers: this._headers
+      headers: this._headers,
     })
-    .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
-    .catch(console.log);
+      .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
+      .catch(console.log);
   }
   // Добавление лайков
   addLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: "PUT",
-      headers: this._headers
+      headers: this._headers,
     })
       .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
       .catch(console.log);
@@ -79,13 +79,12 @@ class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar
+        avatar,
       }),
     })
       .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
-      .catch(console.log)
+      .catch(console.log);
   }
-  
 }
 
 //render loading

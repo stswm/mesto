@@ -27,6 +27,7 @@ export class Card {
 
   deleteCard = () => {
     this._cardElement.remove();
+    this._cardElement = null;
   };
   isLiked(){
     const userHasLikedCard = this._likes.find(

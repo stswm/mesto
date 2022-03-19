@@ -56,7 +56,7 @@ export const inputCardLink = document.querySelector(".popup__input_card-link");
 //btn
 export const editProfileBtn = document.querySelector(".profile__edit-button");
 export const addCardBtn = document.querySelector(".profile__add-button");
-export const editAvatarBtn =  document.querySelector(".profile__avatar_type_edit-button");
+export const editAvatarBtn =  document.querySelector(".profile__avatar-edit-button");
 export const closeEditProfileBtn = editModal.querySelector(".popup__close");
 export const closeAddCardBtn = addCardModal.querySelector(".popup__close");
 export const closePreviewBtn = previewModal.querySelector(".popup__close");
@@ -68,6 +68,7 @@ export const btnSaveAva = newAvatarModal.querySelector(".popup__save_avatar");
 export const currentName = document.querySelector(".profile__name");
 export const currentAbout = document.querySelector(".profile__about");
 export const currentAvatar = document.querySelector(".profile__avatar");
+export const avatarPreview = document.querySelector(".popup__preview-avatar");
 
 
 export const cardTemplateSelector = ".cardTemp";
