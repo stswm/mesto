@@ -27,49 +27,75 @@ import { api } from "../components/Api.js";
 
 let userId;
 
-//подгружаем профиль
-api
-  .getProfile()
-  .then((res) => {
-    userInfo.setUserInfo({
-      name: res.name,
-      about: res.about,
-      avatar: res.avatar,
+Promise.all([api.getProfile(), api.getInitialCards()])
+.then( ([userData, cardList]) => {
+  userInfo.setUserInfo({
+      name: userData.name,
+      about: userData.about,
+      avatar: userData.avatar,
     });
-    userId = res._id;
-  })
-  .catch(console.log);
-// подгружаем карточки
-api
-  .getInitialCards()
-  .then((cardList) => {
-    createCardTest(cardList);
-  })
-  //! так выглядела старая подгрузка, удалю после последнего ревью
-  // .then((cardList) => {
-  //   // console.log(cardList);
-  //   cardList.forEach((data) => {
-  //     // console.log(data);
-  //     const cardElement = createCard({
-  //       name: data.name,
-  //       link: data.link,
-  //       likes: data.likes,
-  //       id: data._id,
-  //       userId: userId,
-  //       ownerId: data.owner._id,
-  //     });
-  //     section.addItem(cardElement);
-  //   });
-  // })
-  .catch(console.log);
+    userId = userData._id;
 
-function createCardTest(cards) {
+    renderCards(cardList);
+  }
+).catch(console.log);
+
+//подгружаем профиль
+// api
+//   .getProfile()
+//   .then((res) => {
+//     userInfo.setUserInfo({
+//       name: res.name,
+//       about: res.about,
+//       avatar: res.avatar,
+//     });
+//     userId = res._id;
+//   })
+//   .catch(console.log);
+// // подгружаем карточки
+// api
+//   .getInitialCards()
+//   .then((cardList) => {
+//     // console.log(cardList);
+//     renderCards(cardList);
+//     // section.renderItems(cardList)
+//   })
+//   //! ↓ так выглядела старая подгрузка, удалю после последнего ревью
+//   // .then((cardList) => {
+//   //   // console.log(cardList);
+//   //   cardList.forEach((data) => {
+//   //     // console.log(data);
+//   //     const cardElement = createCard({
+//   //       name: data.name,
+//   //       link: data.link,
+//   //       likes: data.likes,
+//   //       id: data._id,
+//   //       userId: userId,
+//   //       ownerId: data.owner._id,
+//   //     });
+//   //     section.addItem(cardElement);
+//   //   });
+//   // })
+//   //! ↑ конец старой подгрузки
+//   .catch(console.log);
+
+//   const test = new Section({
+//     renderer: (data) => {
+//       test.addItem(createCard(data));
+//     }
+//   }, ...
+// );
+
+// api.getCard()
+//   .then(res => {
+//       test.renderItems(res);
+//    })
+
+function renderCards(cards) {
   let List = new Section(
     {
       data: cards,
       renderer: renderCard,
-
-      // {data,renderer},containerSelection
     },
     list
   );
@@ -77,13 +103,23 @@ function createCardTest(cards) {
 }
 
 //наполняем странницу карточками
-let List = new Section(
+let section = new Section(
   {
     data: [],
-    renderer: renderCard,
+    renderer: (data) => {
+      section.addItem(createCard(data));
+    },
   },
   list
 );
+// //наполняем странницу карточками
+// let section = new Section(
+//   {
+//     data: [],
+//     renderer: renderCard,
+//   },
+//   list
+// );
 //валидация формы редактирования аватарки
 const avatarEditValid = new FormValidator(validationParams, newAvatarform);
 avatarEditValid.enableValidation();
@@ -140,7 +176,7 @@ const addCard = new PopupWithForm((data) => {
     .addCard(data.name, data.link, data.likes)
     .then((res) => {
       const cardElement = createCard(res);
-      List.addNewCard(cardElement);
+      section.addNewCard(cardElement);
       addCard.close();
     })
     .catch(console.log)
@@ -190,7 +226,7 @@ function createCard(data) {
         confirmModal.dataLoading(true);
         api
           .deleteCard(id)
-          .then((res) => {
+          .then(() => {
             card.deleteCard();
             confirmModal.close();
           })
@@ -199,13 +235,13 @@ function createCard(data) {
           });
       });
     },
-    (_id) => {
+    (id) => {
       if (card.isLiked()) {
-        api.deleteLike(_id).then((res) => {
+        api.deleteLike(id).then((res) => {
           card.setLikes(res.likes);
         });
       } else {
-        api.addLike(_id).then((res) => {
+        api.addLike(id).then((res) => {
           card.setLikes(res.likes);
         });
       }
@@ -219,12 +255,12 @@ function renderCard(data) {
     name: data.name,
     link: data.link,
     likes: data.likes,
-    id: data._id,
+    _id: data._id,
     userId: userId,
     ownerId: data.owner._id,
   });
-  List.addItem(cardElement);
+  section.addItem(cardElement);
 }
 
 // инициализация карточек
-List.renderItems();
+// section.renderItems();

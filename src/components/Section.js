@@ -15,5 +15,4 @@ export class Section{
   addNewCard(element){
     this._container.prepend(element);
   }
-
 }
