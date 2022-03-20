@@ -28,8 +28,8 @@ import { api } from "../components/Api.js";
 let userId;
 
 Promise.all([api.getProfile(), api.getInitialCards()])
-.then( ([userData, cardList]) => {
-  userInfo.setUserInfo({
+  .then(([userData, cardList]) => {
+    userInfo.setUserInfo({
       name: userData.name,
       about: userData.about,
       avatar: userData.avatar,
@@ -37,8 +37,8 @@ Promise.all([api.getProfile(), api.getInitialCards()])
     userId = userData._id;
 
     renderCards(cardList);
-  }
-).catch(console.log);
+  })
+  .catch(console.log);
 
 //подгружаем профиль
 // api
@@ -145,6 +145,7 @@ const editProfile = new PopupWithForm((data) => {
       userInfo.setUserInfo(res);
       editProfile.close();
     })
+    .catch(console.log)
     .finally(() => {
       editProfile.dataLoading(false);
     });
@@ -230,6 +231,7 @@ function createCard(data) {
             card.deleteCard();
             confirmModal.close();
           })
+          .catch(console.log)
           .finally(() => {
             confirmModal.dataLoading(false);
           });
@@ -237,13 +239,19 @@ function createCard(data) {
     },
     (id) => {
       if (card.isLiked()) {
-        api.deleteLike(id).then((res) => {
-          card.setLikes(res.likes);
-        });
+        api
+          .deleteLike(id)
+          .then((res) => {
+            card.setLikes(res.likes);
+          })
+          .catch(console.log);
       } else {
-        api.addLike(id).then((res) => {
-          card.setLikes(res.likes);
-        });
+        api
+          .addLike(id)
+          .then((res) => {
+            card.setLikes(res.likes);
+          })
+          .catch(console.log);
       }
     }
   );
